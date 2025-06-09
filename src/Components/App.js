@@ -101,7 +101,9 @@ export default function App() {
   );
 
   useEffect(function () {
-  fetch(`${import.meta.env.VITE_API_URL}/questions`)
+  const API_URL = import.meta.env.VITE_API_URL;
+
+  fetch(`${API_URL}/questions`)
     .then((res) => res.json())
     .then((data) => dispatch({ type: "dataReceived", payload: data }))
     .catch(() => dispatch({ type: "dataFailed" }));
