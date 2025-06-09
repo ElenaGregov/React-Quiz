@@ -13,13 +13,10 @@ import Footer from "./Footer";
 import Timer from "./Timer";
 
 const SECS_PER_QUESTION = 30;
-const API_URL = import.meta.env.VITE_API_URL;
 
 const initialState = {
   questions: [],
-
-  // 'loading', 'error', 'ready', 'active', 'finished'
-  status: "loading",
+  status: "loading", // 'loading', 'error', 'ready', 'active', 'finished'
   index: 0,
   answer: null,
   points: 0,
@@ -48,7 +45,6 @@ function reducer(state, action) {
       };
     case "newAnswer":
       const question = state.questions.at(state.index);
-
       return {
         ...state,
         answer: action.payload,
@@ -68,24 +64,14 @@ function reducer(state, action) {
       };
     case "restart":
       return { ...initialState, questions: state.questions, status: "ready" };
-    // return {
-    //   ...state,
-    //   points: 0,
-    //   highscore: 0,
-    //   index: 0,
-    //   answer: null,
-    //   status: "ready",
-    // };
-
     case "tick":
       return {
         ...state,
         secondsRemaining: state.secondsRemaining - 1,
         status: state.secondsRemaining === 0 ? "finished" : state.status,
       };
-
     default:
-      throw new Error("Action unkonwn");
+      throw new Error("Unknown action");
   }
 }
 
@@ -101,21 +87,20 @@ export default function App() {
     0
   );
 
- useEffect(function () {
-  const API_URL = import.meta.env.VITE_API_URL;
+  useEffect(function () {
+    const API_URL = import.meta.env.VITE_API_URL;
 
-  if (!API_URL) {
-    console.error("VITE_API_URL is not defined");
-    dispatch({ type: "dataFailed" });
-    return;
-  }
+    if (!API_URL) {
+      console.error("❌ VITE_API_URL is not defined in environment variables.");
+      dispatch({ type: "dataFailed" });
+      return;
+    }
 
-  fetch(`${API_URL}/questions`)
-    .then((res) => res.json())
-    .then((data) => dispatch({ type: "dataReceived", payload: data }))
-    .catch(() => dispatch({ type: "dataFailed" }));
-}, []);
-
+    fetch(`${API_URL}/questions`)
+      .then((res) => res.json())
+      .then((data) => dispatch({ type: "dataReceived", payload: data }))
+      .catch(() => dispatch({ type: "dataFailed" }));
+  }, []);
 
   return (
     <div className="app">
