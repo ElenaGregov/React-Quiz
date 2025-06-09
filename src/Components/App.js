@@ -13,6 +13,7 @@ import Footer from "./Footer";
 import Timer from "./Timer";
 
 const SECS_PER_QUESTION = 30;
+const API_URL = import.meta.env.VITE_API_URL;
 
 const initialState = {
   questions: [],
