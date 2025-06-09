@@ -100,14 +100,21 @@ export default function App() {
     0
   );
 
-  useEffect(function () {
+ useEffect(function () {
   const API_URL = import.meta.env.VITE_API_URL;
+
+  if (!API_URL) {
+    console.error("VITE_API_URL is not defined");
+    dispatch({ type: "dataFailed" });
+    return;
+  }
 
   fetch(`${API_URL}/questions`)
     .then((res) => res.json())
     .then((data) => dispatch({ type: "dataReceived", payload: data }))
     .catch(() => dispatch({ type: "dataFailed" }));
 }, []);
+
 
   return (
     <div className="app">
