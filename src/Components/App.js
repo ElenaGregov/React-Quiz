@@ -100,12 +100,12 @@ export default function App() {
     0
   );
 
-  useEffect(function() {
-    fetch("http://localhost:9000/questions")
-      .then((res) => res.json())
-      .then((data) => dispatch({ type: "dataReceived", payload: data }))
-      .catch((err) => dispatch({ type: "dataFailed" }));
-  }, []);
+  useEffect(function () {
+  fetch(`${import.meta.env.VITE_API_URL}/questions`)
+    .then((res) => res.json())
+    .then((data) => dispatch({ type: "dataReceived", payload: data }))
+    .catch(() => dispatch({ type: "dataFailed" }));
+}, []);
 
   return (
     <div className="app">
