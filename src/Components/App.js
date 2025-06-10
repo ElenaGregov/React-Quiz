@@ -86,21 +86,15 @@ export default function App() {
     (prev, cur) => prev + cur.points,
     0
   );
+  
+useEffect(function () {
+  const API_URL = "https://react-quiz-server-se1t.onrender.com";
 
-  useEffect(function () {
-    const API_URL = import.meta.env.VITE_API_URL;
-
-    if (!API_URL) {
-      console.error("❌ VITE_API_URL is not defined in environment variables.");
-      dispatch({ type: "dataFailed" });
-      return;
-    }
-
-    fetch(`${API_URL}/questions`)
-      .then((res) => res.json())
-      .then((data) => dispatch({ type: "dataReceived", payload: data }))
-      .catch(() => dispatch({ type: "dataFailed" }));
-  }, []);
+  fetch(`${API_URL}/questions`)
+    .then((res) => res.json())
+    .then((data) => dispatch({ type: "dataReceived", payload: data }))
+    .catch(() => dispatch({ type: "dataFailed" }));
+}, []);
 
   return (
     <div className="app">
