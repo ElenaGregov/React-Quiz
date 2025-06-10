@@ -92,9 +92,14 @@ useEffect(function () {
 
   fetch(`${API_URL}/questions`)
     .then((res) => res.json())
-    .then((data) => dispatch({ type: "dataReceived", payload: data }))
+    .then((data) => {
+      // Check if data is an object with a `questions` array
+      const questionsArray = Array.isArray(data) ? data : data.questions;
+      dispatch({ type: "dataReceived", payload: questionsArray });
+    })
     .catch(() => dispatch({ type: "dataFailed" }));
 }, []);
+
 
   return (
     <div className="app">
