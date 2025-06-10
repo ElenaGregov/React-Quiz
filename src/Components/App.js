@@ -88,7 +88,7 @@ export default function App() {
   );
   
 useEffect(function () {
-  const API_URL = "https://react-quiz-server-se1t.onrender.com";
+  const API_URL = "https://react-quiz-server-se1t.onrender.com/api";
 
   fetch(`${API_URL}/questions`)
     .then((res) => res.json())
