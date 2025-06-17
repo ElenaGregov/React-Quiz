@@ -1,34 +1,35 @@
-# React Quiz
+# 🧠 React Quiz
 
-An interactive web application for taking quizzes, built with React.
+**React Quiz** is a single-page quiz application built with React. It loads questions from a mock backend using JSON Server and allows users to test their knowledge in a simple and interactive format.
 
-## 📌 About the Project
+## 📌 Project Overview
 
-React Quiz is an educational project developed during a web development course. The app allows users to take a quiz, select answers, and view their score.
+This project was developed during a web development course to practice working with React components, hooks, and basic API integration using a local JSON Server.
 
 ## 🚀 Features
 
-- Load questions from an API or local file
-- Answer selection functionality
-- Score calculation
-- Restart the quiz
-- State management using React Hooks
+- Load quiz questions from a mock REST API
+- Display one question at a time with multiple answers
+- Track user score and show results
+- Reset quiz functionality
+- Responsive UI for desktop and mobile
 
-## 🛠️ Technologies Used
+## 🛠️ Tech Stack
 
-- React
-- JavaScript (ES6)
-- CSS Modules / SCSS
-- React Router
-- fetch API or axios
+- [React](https://reactjs.org/) (via Create React App)
+- [JSON Server](https://github.com/typicode/json-server)
+- Testing libraries:  
+  - `@testing-library/react`  
+  - `@testing-library/jest-dom`  
+  - `@testing-library/user-event`
 
-## 💻 How to Run the Project
+## 💻 Getting Started
+
+### 1. Clone the repository
 
 ```bash
-git clone https://github.com/ElenaGregov/React-Quiz.git
-cd React-Quiz
-npm install
-npm start
+git clone https://github.com/ElenaGregov/react-quiz.git
+cd react-quiz
 
 ## 🗄️ JSON Server Setup
 
@@ -58,6 +59,14 @@ If you want to run it manually:
 npx json-server --watch data/questions.json --port 9000
 
 
+🧠 What I Learned
 
+- Building interactive components using React hooks
+
+- Managing local state and side effects
+
+- Integrating a mock REST API using JSON Server
+
+- Basic test writing with React Testing Library
 
 
